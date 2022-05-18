@@ -9,7 +9,6 @@ from rest_framework.status import (
     HTTP_401_UNAUTHORIZED,
 )
 from rest_framework.views import Request, Response
-
 from .models import Users
 from .permissions import IsAdmin
 from .serializers import LoginSerializer, UserSerializer
@@ -30,17 +29,17 @@ class UserView(GenericAPIView):
         user.set_password(serialized.validated_data["password"])
         user.save()
 
-        out_serialize: ModelSerializer = self.get_serializer(user)
+        user_serialize: ModelSerializer = self.get_serializer(user)
 
-        return Response(out_serialize.data, HTTP_201_CREATED)
+        return Response(user_serialize.data, HTTP_201_CREATED)
             
 
     def get(self, _: Request):
         users = self.get_queryset()
 
-        out_serialize: ModelSerializer = self.get_serializer(users, many=True)
+        users_serialize: ModelSerializer = self.get_serializer(users, many=True)
 
-        return Response(out_serialize.data, HTTP_200_OK)
+        return Response(users_serialize.data, HTTP_200_OK)
 
 
 class LoginView(GenericAPIView):

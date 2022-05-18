@@ -1,6 +1,5 @@
 from rest_framework.permissions import BasePermission
 from rest_framework.views import Request
-
 from users.models import Users
 
 
