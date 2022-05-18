@@ -13,12 +13,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Fees',
+            name='Products',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('credit_fee', models.FloatField()),
-                ('debit_fee', models.FloatField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('description', models.TextField()),
+                ('price', models.FloatField()),
+                ('quantity', models.IntegerField()),
+                ('is_active', models.BooleanField(default=True)),
             ],
         ),
     ]

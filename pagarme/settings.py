@@ -42,6 +42,7 @@ MY_APPS = [
     "rest_framework.authtoken",
     "users",
     "fees",
+    "products",
 ]
 INSTALLED_APPS = DJANGO_APPS + MY_APPS
 

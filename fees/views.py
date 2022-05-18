@@ -40,5 +40,4 @@ class FeesView(GenericAPIView):
 
         except ValidationError:
             return Response({"message": "fee not found"}, HTTP_404_NOT_FOUND)
-
         

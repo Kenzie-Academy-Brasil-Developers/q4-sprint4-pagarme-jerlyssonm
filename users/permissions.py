@@ -26,3 +26,13 @@ class OnlyAdmAccess(BasePermission):
         if not user.is_admin:
             return False
         return True
+
+class OnlySellerAccess(BasePermission):
+    def has_permission(self, request: Request, _):
+        user: Users = request.user
+
+        if user.is_anonymous:
+            return False
+        if not user.is_seller:
+            return False
+        return True
