@@ -39,3 +39,12 @@ class OnlySellerAccess(BasePermission):
             return False
 
         return True
+
+class CustomerAccess(BasePermission):
+    def has_permission(self, request: Request, _):
+        user: Users = request.user
+
+        if user.is_anonymous:
+            return False
+
+        return True

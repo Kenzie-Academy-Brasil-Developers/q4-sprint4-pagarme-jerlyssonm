@@ -43,6 +43,7 @@ MY_APPS = [
     "users",
     "fees",
     "products",
+    "payments",
 ]
 INSTALLED_APPS = DJANGO_APPS + MY_APPS
 
