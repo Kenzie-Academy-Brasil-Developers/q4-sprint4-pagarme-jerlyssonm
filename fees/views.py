@@ -1,17 +1,18 @@
 from django.core.exceptions import ValidationError
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.generics import GenericAPIView
 from rest_framework.serializers import ModelSerializer
 from rest_framework.status import (HTTP_200_OK, HTTP_201_CREATED,
                                    HTTP_404_NOT_FOUND)
 from rest_framework.views import Request, Response
-
+from users.permissions import OnlyAdmAccess
 from .models import Fees
 from .serializers import FeeSerializer
 
 
 class FeesView(GenericAPIView):
-    authentication_classes = []
-    permission_classes = []
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [OnlyAdmAccess]
     serializer_class = FeeSerializer
     queryset = Fees.objects
 
