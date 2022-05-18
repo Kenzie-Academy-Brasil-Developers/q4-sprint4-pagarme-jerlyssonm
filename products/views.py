@@ -25,11 +25,11 @@ class ProductView(GenericAPIView):
 
         return Response(serialized.data, HTTP_201_CREATED)
 
-    def get(self, _: Request, product_id: str = ""):
+    def get(self, _: Request, product_id=""):
 
         try:
             products = self.get_serializer(
-                self.get_queryset()
+                self.get_queryset(), many=True
                 )
 
             if product_id:
@@ -38,7 +38,7 @@ class ProductView(GenericAPIView):
                 product_serialize = self.get_serializer(product)
 
                 return Response(product_serialize.data, HTTP_200_OK)
-
+            
             return Response(products.data, HTTP_200_OK)
 
         except ValidationError:
