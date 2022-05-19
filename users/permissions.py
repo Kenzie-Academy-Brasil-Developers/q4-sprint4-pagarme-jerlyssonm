@@ -29,22 +29,19 @@ class OnlyAdmAccess(BasePermission):
 
 class OnlySellerAccess(BasePermission):
     def has_permission(self, request: Request, _):
-        restricted_methods = ("POST", "PUT", "PATCH", "DELETE")
-        user: Users = request.user
+        restrict_methods = ["POST", "PATCH"]
 
-        if not request.method in restricted_methods and user.is_anonymous:
+        if request.method in restrict_methods and (
+            request.user.is_anonymous or not request.user.is_seller
+        ):
             return False
-
-        if not user.is_seller:
-            return False
-
         return True
-
+        
 class CustomerAccess(BasePermission):
     def has_permission(self, request: Request, _):
         user: Users = request.user
 
-        if user.is_anonymous:
+        if not user.is_authenticated:
             return False
 
         return True

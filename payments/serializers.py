@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from .models import PaymentInfo
 
 
@@ -9,7 +8,6 @@ class PaymentInfoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
         extra_kwargs = {
-            "id": {"read_only": True},
             "is_active": {"read_only": True},
         }
 
